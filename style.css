@@ -1,0 +1,292 @@
+/* =========================
+   全体
+========================= */
+
+body {
+    font-family: sans-serif;
+    background-color: #f5f5f5;
+
+    max-width: 500px;
+    margin: 0 auto;
+
+    padding: 20px;
+
+    color: #222;
+}
+
+
+/* =========================
+   見出し
+========================= */
+
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+body > p {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   共通カード
+========================= */
+
+.card,
+.point-card,
+.history-card,
+.report-history-card {
+    background-color: white;
+
+    padding: 20px;
+
+    border-radius: 16px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================
+   入力欄
+========================= */
+
+input,
+textarea {
+    width: 100%;
+
+    padding: 12px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    margin-top: 6px;
+}
+
+textarea {
+    height: 90px;
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+
+    border: 2px solid #06c755;
+}
+
+
+/* =========================
+   運動時間
+========================= */
+
+.time-input {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.time-input input {
+    flex: 1;
+}
+
+.time-input span {
+    white-space: nowrap;
+}
+
+
+/* =========================
+   ボタン
+========================= */
+
+button {
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    background-color: #06c755;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+button:disabled {
+    background-color: #aaa;
+
+    opacity: 0.7;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   ポイント
+========================= */
+
+.point-card {
+    text-align: center;
+}
+
+#points {
+    font-size: 32px;
+
+    font-weight: bold;
+
+    margin: 10px 0;
+}
+
+#streakDisplay {
+    margin-top: 10px;
+
+    font-size: 20px;
+}
+
+
+/* =========================
+   履歴
+========================= */
+
+#pointHistory,
+#reportHistory,
+#cheerHistory {
+    padding-left: 20px;
+}
+
+#pointHistory li,
+#reportHistory li,
+#cheerHistory li {
+    margin-bottom: 15px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   応援回数
+========================= */
+
+#cheerCountDisplay {
+    text-align: center;
+
+    font-weight: bold;
+
+    margin-top: 12px;
+}
+
+
+/* =========================
+   スマホ表示
+========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 12px;
+    }
+
+    .card,
+    .point-card,
+    .history-card,
+    .report-history-card {
+        padding: 16px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+}
+
+/* =========================
+   ステッカーショップ
+========================= */
+
+.sticker-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid #eee;
+}
+
+.sticker-item:last-child {
+    border-bottom: none;
+}
+
+.sticker-item button {
+    width: auto;
+    padding: 10px 14px;
+}
+
+.sticker-item button {
+    width: auto;
+    padding: 10px 14px;
+}
+
+/* =========================
+   プレミアムプラン
+========================= */
+
+.plan-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   プレミアムプラン強調
+========================= */
+
+.premium-card {
+    border: 2px solid #06c755;
+}
+
+.premium-price {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0 20px;
+}
+
+.premium-features {
+    padding-left: 20px;
+    line-height: 1.8;
+}
+
+.premium-card hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+}

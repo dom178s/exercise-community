@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>運動コミュニティ</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>🏃 運動コミュニティ</h1>
+    <p>今日も運動しよう！</p>
+
+
+    <!-- 運動報告 -->
+    <div class="card">
+
+        <h2>運動報告</h2>
+
+        <label>日付</label><br>
+        <input
+            type="date"
+            id="date"
+        >
+
+        <br><br>
+
+        <label>運動内容</label><br>
+        <input
+            type="text"
+            id="exercise"
+            placeholder="例：ウォーキング"
+        >
+
+        <br><br>
+
+        <label>運動時間</label><br>
+
+        <div class="time-input">
+
+            <input
+                type="number"
+                id="time"
+                placeholder="30"
+            >
+
+            <span>分</span>
+
+        </div>
+
+        <br>
+
+        <label>今日の気分（1〜5）</label><br>
+
+        <input
+            type="number"
+            id="mood"
+            min="1"
+            max="5"
+        >
+
+        <br><br>
+
+        <label>ひとこと</label><br>
+
+        <textarea
+            id="comment"
+            placeholder="今日の感想を書いてください"
+        ></textarea>
+
+        <br><br>
+
+        <button
+            id="reportButton"
+            onclick="showReport()"
+        >
+            運動を報告する
+        </button>
+
+    </div>
+
+
+    <!-- ポイント -->
+    <div class="point-card">
+
+        <h2>ポイント</h2>
+
+        <p id="points">
+            0ポイント
+        </p>
+
+        <h3 id="streakDisplay">
+            🔥 0日連続
+        </h3>
+
+    </div>
+
+    <!-- プレミアムプラン -->
+<div class="card premium-card">
+
+    <h2>✨ プレミアムプラン</h2>
+
+    <p class="premium-price">
+        月額300円
+    </p>
+
+    <p>
+        AIが毎日の運動習慣をサポートします。
+    </p>
+
+    <ul class="premium-features">
+        <li>🤖 毎日の運動プラン提案</li>
+        <li>⚙️ 負荷を「小・中・大」から選択</li>
+        <li>🔥 推定消費カロリー表示</li>
+        <li>⭐ 獲得ポイントアップ予定</li>
+    </ul>
+
+    <hr>
+
+    <p>
+        今日の運動負荷を選んでください
+    </p>
+
+    <div class="plan-buttons">
+
+        <button onclick="suggestPlan('small')">
+            🟢 小
+        </button>
+
+        <button onclick="suggestPlan('medium')">
+            🟡 中
+        </button>
+
+        <button onclick="suggestPlan('large')">
+            🔴 大
+        </button>
+
+    </div>
+
+    <div id="aiPlanResult">
+        <p>
+            負荷を選ぶと、今日のおすすめ運動プランを提案します。
+        </p>
+    </div>
+
+</div>
+
+
+    <!-- ポイント履歴 -->
+    <div class="history-card">
+
+        <h2>ポイント履歴</h2>
+
+        <ul id="pointHistory">
+            <li>
+                まだポイント履歴はありません
+            </li>
+        </ul>
+
+    </div>
+
+
+    <!-- 運動履歴 -->
+    <div class="report-history-card">
+
+        <h2>運動履歴</h2>
+
+        <ul id="reportHistory">
+            <li>
+                まだ運動履歴はありません
+            </li>
+        </ul>
+
+    </div>
+
+
+    <!-- 応援 -->
+    <div class="card">
+
+        <h2>🤝 応援する</h2>
+
+        <label>
+            今日の良かったところ
+        </label>
+
+        <br>
+
+        <textarea
+            id="goodPoint"
+            placeholder="例：今日も運動を続けられましたね！"
+        ></textarea>
+
+        <br><br>
+
+        <label>
+            これからのひとこと
+        </label>
+
+        <br>
+
+        <textarea
+            id="cheerMessage"
+            placeholder="例：明日も一緒に頑張りましょう！"
+        ></textarea>
+
+        <br><br>
+
+        <button
+            id="cheerButton"
+            onclick="cheer()"
+        >
+            応援する
+        </button>
+
+        <p id="cheerCountDisplay">
+            本日の応援 0/2回
+        </p>
+
+    </div>
+
+
+    <!-- 応援履歴 -->
+    <div class="history-card">
+
+        <h2>応援履歴</h2>
+
+        <ul id="cheerHistory">
+            <li>
+                まだ応援履歴はありません
+            </li>
+        </ul>
+
+    </div>
+
+    <!-- ステッカーショップ -->
+<div class="card">
+
+    <h2>🎁 ステッカーショップ</h2>
+
+    <div class="sticker-item">
+        <div>
+            <strong>💪 ナイス筋トレ！</strong><br>
+            <span>20ポイント</span>
+        </div>
+
+        <button onclick="buySticker('💪 ナイス筋トレ！', 20)">
+            購入する
+        </button>
+    </div>
+
+    <div class="sticker-item">
+        <div>
+            <strong>🔥 継続中！</strong><br>
+            <span>30ポイント</span>
+        </div>
+
+        <button onclick="buySticker('🔥 継続中！', 30)">
+            購入する
+        </button>
+    </div>
+
+    <div class="sticker-item">
+        <div>
+            <strong>🏆 継続王</strong><br>
+            <span>50ポイント</span>
+        </div>
+
+        <button onclick="buySticker('🏆 継続王', 50)">
+            購入する
+        </button>
+    </div>
+
+</div>
+
+
+<!-- 所持ステッカー -->
+<div class="history-card">
+
+    <h2>🎒 所持ステッカー</h2>
+
+    <ul id="ownedStickers">
+        <li>まだステッカーを持っていません</li>
+    </ul>
+
+</div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
