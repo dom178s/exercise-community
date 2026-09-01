@@ -290,3 +290,42 @@ button:disabled {
     border-top: 1px solid #eee;
     margin: 20px 0;
 }
+/* =========================
+   ステッカー応援
+========================= */
+
+#stickerCheerButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+#stickerCheerButtons button {
+    width: auto;
+    flex: 1 1 140px;
+
+    background-color: white;
+    color: #222;
+
+    border: 2px solid #06c755;
+    border-radius: 18px;
+
+    padding: 12px 15px;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+#stickerCheerButtons button:hover {
+    background-color: #f0fff5;
+    transform: translateY(-2px);
+}
+
+#stickerCheerButtons button:active {
+    transform: scale(0.96);
+}
