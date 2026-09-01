@@ -99,55 +99,56 @@
 
     </div>
 
+
     <!-- プレミアムプラン -->
-<div class="card premium-card">
+    <div class="card premium-card">
 
-    <h2>✨ プレミアムプラン</h2>
+        <h2>✨ プレミアムプラン</h2>
 
-    <p class="premium-price">
-        月額300円
-    </p>
-
-    <p>
-        AIが毎日の運動習慣をサポートします。
-    </p>
-
-    <ul class="premium-features">
-        <li>🤖 毎日の運動プラン提案</li>
-        <li>⚙️ 負荷を「小・中・大」から選択</li>
-        <li>🔥 推定消費カロリー表示</li>
-        <li>⭐ 獲得ポイントアップ予定</li>
-    </ul>
-
-    <hr>
-
-    <p>
-        今日の運動負荷を選んでください
-    </p>
-
-    <div class="plan-buttons">
-
-        <button onclick="suggestPlan('small')">
-            🟢 小
-        </button>
-
-        <button onclick="suggestPlan('medium')">
-            🟡 中
-        </button>
-
-        <button onclick="suggestPlan('large')">
-            🔴 大
-        </button>
-
-    </div>
-
-    <div id="aiPlanResult">
-        <p>
-            負荷を選ぶと、今日のおすすめ運動プランを提案します。
+        <p class="premium-price">
+            月額300円
         </p>
-    </div>
 
-</div>
+        <p>
+            AIが毎日の運動習慣をサポートします。
+        </p>
+
+        <ul class="premium-features">
+            <li>🤖 毎日の運動プラン提案</li>
+            <li>⚙️ 負荷を「小・中・大」から選択</li>
+            <li>🔥 推定消費カロリー表示</li>
+            <li>⭐ 獲得ポイントアップ予定</li>
+        </ul>
+
+        <hr>
+
+        <p>
+            今日の運動負荷を選んでください
+        </p>
+
+        <div class="plan-buttons">
+
+            <button onclick="suggestPlan('small')">
+                🟢 小
+            </button>
+
+            <button onclick="suggestPlan('medium')">
+                🟡 中
+            </button>
+
+            <button onclick="suggestPlan('large')">
+                🔴 大
+            </button>
+
+        </div>
+
+        <div id="aiPlanResult">
+            <p>
+                負荷を選ぶと、今日のおすすめ運動プランを提案します。
+            </p>
+        </div>
+
+    </div>
 
 
     <!-- ポイント履歴 -->
@@ -220,6 +221,20 @@
             本日の応援 0/2回
         </p>
 
+
+        <!-- ステッカー応援 -->
+        <hr>
+
+        <h3>🎁 ステッカーで応援</h3>
+
+        <p>
+            所持しているステッカーを使って、簡単に応援できます。
+        </p>
+
+        <div id="stickerCheerButtons">
+            <p>まだ使用できるステッカーがありません</p>
+        </div>
+
     </div>
 
 
@@ -236,57 +251,58 @@
 
     </div>
 
+
     <!-- ステッカーショップ -->
-<div class="card">
+    <div class="card">
 
-    <h2>🎁 ステッカーショップ</h2>
+        <h2>🎁 ステッカーショップ</h2>
 
-    <div class="sticker-item">
-        <div>
-            <strong>💪 ナイス筋トレ！</strong><br>
-            <span>20ポイント</span>
+        <div class="sticker-item">
+            <div>
+                <strong>💪 ナイス筋トレ！</strong><br>
+                <span>20ポイント</span>
+            </div>
+
+            <button onclick="buySticker('💪 ナイス筋トレ！', 20)">
+                購入する
+            </button>
         </div>
 
-        <button onclick="buySticker('💪 ナイス筋トレ！', 20)">
-            購入する
-        </button>
-    </div>
+        <div class="sticker-item">
+            <div>
+                <strong>🔥 継続中！</strong><br>
+                <span>30ポイント</span>
+            </div>
 
-    <div class="sticker-item">
-        <div>
-            <strong>🔥 継続中！</strong><br>
-            <span>30ポイント</span>
+            <button onclick="buySticker('🔥 継続中！', 30)">
+                購入する
+            </button>
         </div>
 
-        <button onclick="buySticker('🔥 継続中！', 30)">
-            購入する
-        </button>
-    </div>
+        <div class="sticker-item">
+            <div>
+                <strong>🏆 継続王</strong><br>
+                <span>50ポイント</span>
+            </div>
 
-    <div class="sticker-item">
-        <div>
-            <strong>🏆 継続王</strong><br>
-            <span>50ポイント</span>
+            <button onclick="buySticker('🏆 継続王', 50)">
+                購入する
+            </button>
         </div>
 
-        <button onclick="buySticker('🏆 継続王', 50)">
-            購入する
-        </button>
     </div>
 
-</div>
 
+    <!-- 所持ステッカー -->
+    <div class="history-card">
 
-<!-- 所持ステッカー -->
-<div class="history-card">
+        <h2>🎒 所持ステッカー</h2>
 
-    <h2>🎒 所持ステッカー</h2>
+        <ul id="ownedStickers">
+            <li>まだステッカーを持っていません</li>
+        </ul>
 
-    <ul id="ownedStickers">
-        <li>まだステッカーを持っていません</li>
-    </ul>
-
-</div>
+    </div>
 
 
     <script src="script.js"></script>
