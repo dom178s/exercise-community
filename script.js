@@ -90,6 +90,7 @@ showReportHistory();
 showCheerCount();
 showCheerHistory();
 showOwnedStickers();
+showStickerCheerButtons();
 
 
 // =========================
@@ -164,11 +165,9 @@ function showReport() {
     };
 
 
-    // 履歴の一番上に追加
     reports.unshift(reportData);
 
 
-    // 保存
     localStorage.setItem(
         "reports",
         JSON.stringify(reports)
@@ -178,18 +177,15 @@ function showReport() {
     showReportHistory();
 
 
-    // 連続記録更新
     updateStreak();
 
 
-    // 運動報告ポイント
     addPoints(
         10,
         "✅ 運動報告"
     );
 
 
-    // 3日ボーナス
     if (streak === 3) {
 
         addPoints(
@@ -203,7 +199,6 @@ function showReport() {
     }
 
 
-    // 7日ボーナス
     if (streak === 7) {
 
         addPoints(
@@ -501,7 +496,6 @@ function cheer() {
     }
 
 
-    // 1日2回制限
     if (cheerCount >= 2) {
 
         alert(
@@ -512,7 +506,6 @@ function cheer() {
     }
 
 
-    // 応援内容を保存
     const cheerData = {
 
         date: today,
@@ -539,7 +532,6 @@ function cheer() {
     showCheerHistory();
 
 
-    // +2ポイント
     addPoints(
         2,
         "👏 応援した"
@@ -574,7 +566,6 @@ function cheer() {
     );
 
 
-    // 入力欄を空に戻す
     document.getElementById(
         "goodPoint"
     ).value = "";
@@ -656,6 +647,7 @@ function showCheerHistory() {
     );
 }
 
+
 // =========================
 // ステッカー購入
 // =========================
@@ -729,6 +721,8 @@ function buySticker(
 
     showOwnedStickers();
 
+    showStickerCheerButtons();
+
 
     alert(
         stickerName +
@@ -783,44 +777,145 @@ function showOwnedStickers() {
     );
 }
 
+
 // =========================
-// 所持ステッカー表示
+// ステッカー応援ボタン表示
 // =========================
 
-function showOwnedStickers() {
+function showStickerCheerButtons() {
 
-    const stickerElement =
+    const stickerCheerElement =
         document.getElementById(
-            "ownedStickers"
+            "stickerCheerButtons"
         );
 
-    if (
-        ownedStickers.length === 0
-    ) {
 
-        stickerElement.innerHTML =
-            "<li>まだステッカーを持っていません</li>";
+    if (!stickerCheerElement) {
 
         return;
     }
 
-    stickerElement.innerHTML = "";
+
+    if (ownedStickers.length === 0) {
+
+        stickerCheerElement.innerHTML =
+            "<p>まだ使用できるステッカーがありません</p>";
+
+        return;
+    }
+
+
+    stickerCheerElement.innerHTML = "";
+
 
     ownedStickers.forEach(
         function (sticker) {
 
-            const listItem =
+            const button =
                 document.createElement(
-                    "li"
+                    "button"
                 );
 
-            listItem.textContent =
+
+            button.textContent =
                 sticker;
 
-            stickerElement.appendChild(
-                listItem
+
+            button.onclick =
+                function () {
+
+                    cheerWithSticker(
+                        sticker
+                    );
+
+                };
+
+
+            stickerCheerElement.appendChild(
+                button
             );
         }
+    );
+}
+
+
+// =========================
+// ステッカーで応援
+// =========================
+
+function cheerWithSticker(
+    stickerName
+) {
+
+    if (cheerCount >= 2) {
+
+        alert(
+            "本日の応援ポイントは2回までです！"
+        );
+
+        return;
+    }
+
+
+    const cheerData = {
+
+        date: today,
+
+        goodPoint:
+            "🎁 ステッカーで応援",
+
+        cheerMessage:
+            stickerName
+
+    };
+
+
+    cheers.unshift(
+        cheerData
+    );
+
+
+    localStorage.setItem(
+        "cheers",
+        JSON.stringify(cheers)
+    );
+
+
+    showCheerHistory();
+
+
+    addPoints(
+        2,
+        "🎁 ステッカー応援"
+    );
+
+
+    cheerCount =
+        cheerCount + 1;
+
+
+    localStorage.setItem(
+        "cheerCount",
+        cheerCount
+    );
+
+
+    localStorage.setItem(
+        "lastCheerDate",
+        today
+    );
+
+
+    showCheerCount();
+
+
+    alert(
+        stickerName +
+        "\nステッカーで応援しました！\n" +
+        "+2ポイント獲得しました！\n" +
+        "本日の応援 " +
+        cheerCount +
+        "/2回"
     );
 }
 
@@ -832,7 +927,10 @@ function showOwnedStickers() {
 function suggestPlan(level) {
 
     const result =
-        document.getElementById("aiPlanResult");
+        document.getElementById(
+            "aiPlanResult"
+        );
+
 
     if (level === "small") {
 
@@ -845,6 +943,7 @@ function suggestPlan(level) {
             "<p><strong>推定消費カロリー：約80〜120kcal</strong></p>";
     }
 
+
     if (level === "medium") {
 
         result.innerHTML =
@@ -856,6 +955,7 @@ function suggestPlan(level) {
             "<p><strong>目安時間：約45分</strong></p>" +
             "<p><strong>推定消費カロリー：約150〜220kcal</strong></p>";
     }
+
 
     if (level === "large") {
 
