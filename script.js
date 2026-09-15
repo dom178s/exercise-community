@@ -179,7 +179,7 @@ function showReport() {
 
     };
 
-
+saveReportToSupabase(reportData);
     reports.unshift(reportData);
 
 
