@@ -1,3 +1,18 @@
+const SUPABASE_URL = "https://ahytnowgiefwlflrgvqf.supabase.co/rest/v1/";
+const SUPABASE_KEY = "sb_publishable_xpO7aOR8vkB6t_JilFW1Zw_mq3YYwzR";
+const SUPABASE_REPORTS_URL = SUPABASE_URL + "reports";
+
+async function saveReportToSupabase(report) {
+    const response = await fetch(SUPABASE_REPORTS_URL, {
+        method: "POST",
+        headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json"
+                },
+        body: JSON.stringify(report)
+            });
+    }
 // =========================
 // 保存データの読み込み
 // =========================
