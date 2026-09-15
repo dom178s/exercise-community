@@ -12,6 +12,7 @@ async function saveReportToSupabase(report) {
                 },
         body: JSON.stringify(report)
             });
+    console.log("Supabase response:", response.status, await response.text());
     }
 // =========================
 // 保存データの読み込み
