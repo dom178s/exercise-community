@@ -81,6 +81,13 @@ SupabaseのURLとブラウザ向けpublishable keyを現在 `script.js` から�
 
 SupabaseのRLS（Row Level Security）とデータアクセス権限については、一般公開を見据えて今後確認・整理が必要です。
 
+### `.env.example` について
+**確認済み**
+
+現在はHTML・CSS・JavaScriptをGitHub Pagesから直接配信する静的Webアプリであり、`.env` を読み込むビルド工程や実行環境を使用していません。そのため、現時点では `.env.example` は作成していません。
+
+将来、環境変数を読み込む構成やビルドツールを導入する場合は、その時点で `.env.example` の追加を検討します。なお、secret/service-role keyなどの秘密情報は、引き続きフロントエンドや公開リポジトリへ置きません。
+
 ## 現在の主な課題
 **確認済み / 要確認**
 
