@@ -14,12 +14,21 @@ exercise-community/
 ├─ script.js
 ├─ style.css
 ├─ README.md
+├─ AGENTS.md
+├─ CONTRIBUTING.md
+├─ .github/
+│  ├─ ISSUE_TEMPLATE/
+│  │  ├─ bug_report.yml
+│  │  ├─ feature_request.yml
+│  │  └─ config.yml
+│  └─ pull_request_template.md
 └─ docs/
    ├─ architecture.md
-   └─ repository-map.md
+   ├─ repository-map.md
+   └─ current-status.md
 ```
 
-※ README.md と docs 配下の資料は `docs/project-documentation` ブランチで整備中です。
+※ 現在、これらのドキュメントとGitHub運用テンプレートは `docs/project-documentation` ブランチで整備中で、mainへの反映前です。
 
 ## 3. エントリーポイント
 **確認済み**
@@ -116,14 +125,30 @@ exercise-community/
 
 この文書です。ファイルの役割と変更影響を整理します。
 
-### 今後追加予定
-**要確認**
+### `docs/current-status.md`
+**確認済み**
 
-- `docs/current-status.md`
-- `AGENTS.md`
-- `.env.example`
-- `CONTRIBUTING.md`
-- GitHub Issue / Pull Requestテンプレート
+実装済み・未実装・既知の問題・要確認事項・次に確認すべきことを整理します。
+
+### `AGENTS.md`
+**確認済み**
+
+AIがこのプロジェクトで安全かつ一貫して作業するためのルールを整理します。
+
+### `CONTRIBUTING.md`
+**確認済み**
+
+Issue、ブランチ、コミット、Pull Requestを使った開発手順を整理します。
+
+### GitHub Issue / Pull Requestテンプレート
+**確認済み**
+
+`.github/` 配下に、バグ報告・機能提案のIssueテンプレートとPull Requestテンプレートを配置しています。
+
+### `.env.example`
+**確認済み**
+
+現時点では作成していません。現在は `.env` を読み込むビルド工程や実行環境を使用していないためです。詳細は `README.md` の「環境変数・外部サービス」を参照してください。
 
 ## 5. データと関連箇所
 **確認済み**
@@ -149,7 +174,7 @@ exercise-community/
 - プロジェクト概要を更新する → `README.md`
 - システム構成を変更した → `docs/architecture.md`
 - ファイル構成・責務を変更した → `docs/repository-map.md`
-- 実装状況・既知の問題が変わった → 今後作成する `docs/current-status.md`
+- 実装状況・既知の問題が変わった → `docs/current-status.md`
 
 ## 7. 変更時の注意
 **確認済み / 要確認**
