@@ -53,7 +53,7 @@
 - `style.css` — デザイン
 - `script.js` — アプリの機能・localStorage処理・Supabase接続
 
-詳細は今後 `docs/repository-map.md` に整理します。
+詳細は `docs/repository-map.md` を参照してください。
 
 ## データ保存
 **確認済み**
@@ -99,7 +99,7 @@ SupabaseのRLS（Row Level Security）とデータアクセス権限について
 - ドキュメント整備
 - 少人数でのMVP検証後、収益化・一般公開へ進む条件の整理
 
-詳細は今後 `docs/current-status.md` に整理します。
+詳細は `docs/current-status.md` を参照してください。
 
 ## 開発方針
 **確認済み**
