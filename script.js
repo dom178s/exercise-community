@@ -1,7 +1,7 @@
 const SUPABASE_URL = "https://ahytnowgiefwlflrgvqf.supabase.co/rest/v1/";
 const SUPABASE_KEY = "sb_publishable_xpO7aOR8vkB6t_JilFW1Zw_mq3YYwzR";
 const SUPABASE_REPORTS_URL = SUPABASE_URL + "reports";
-
+let isSavingReport = false;
 async function saveReportToSupabase(report) {
     const response = await fetch(SUPABASE_REPORTS_URL, {
         method: "POST",
@@ -145,7 +145,9 @@ if (lastReportDate === today) {
 // =========================
 
 async function showReport() {
-
+  if (isSavingReport) {
+    return;
+  }
     const date =
         document.getElementById("date").value;
 
@@ -190,14 +192,16 @@ async function showReport() {
         comment: comment
 
     };
-
+  isSavingReport = true;
 try {
   await saveReportToSupabase(reportData);
 } catch (error) {
   console.error("運動報告の保存に失敗しました:", error);
   alert("保存に失敗しました。通信状況を確認して、もう一度お試しください。");
   return;
-}
+}  finally {
+    isSavingReport = false;
+  }
     reports.unshift(reportData);
 
 
