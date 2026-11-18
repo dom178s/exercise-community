@@ -2,6 +2,7 @@ const SUPABASE_URL = "https://ahytnowgiefwlflrgvqf.supabase.co/rest/v1/";
 const SUPABASE_KEY = "sb_publishable_xpO7aOR8vkB6t_JilFW1Zw_mq3YYwzR";
 const SUPABASE_REPORTS_URL = SUPABASE_URL + "reports";
 let isSavingReport = false;
+
 async function saveReportToSupabase(report) {
     const response = await fetch(SUPABASE_REPORTS_URL, {
         method: "POST",
@@ -9,22 +10,23 @@ async function saveReportToSupabase(report) {
             "apikey": SUPABASE_KEY,
             "Authorization": `Bearer ${SUPABASE_KEY}`,
             "Content-Type": "application/json"
-                },
+        },
         body: JSON.stringify({
-  exercise_date: report.date,
-  exercise: report.exercise,
-  exercise_time: Number(report.time),
-  mood: Number(report.mood),
-  comment: report.comment
-    })
-  });
-    const responseText = await response.text();
-  console.log("Supabase response:", response.status, responseText);
+            exercise_date: report.date,
+            exercise: report.exercise,
+            exercise_time: Number(report.time),
+            mood: Number(report.mood),
+            comment: report.comment
+        })
+    });
 
-  if (!response.ok) {
-    throw new Error(`Supabase保存失敗: ${response.status} ${responseText}`);
-  }
+    const responseText = await response.text();
+    console.log("Supabase response:", response.status, responseText);
+
+    if (!response.ok) {
+        throw new Error(`Supabase保存失敗: ${response.status} ${responseText}`);
     }
+}
 // =========================
 // 保存データの読み込み
 // =========================
@@ -145,9 +147,11 @@ if (lastReportDate === today) {
 // =========================
 
 async function showReport() {
-  if (isSavingReport) {
-    return;
-  }
+
+    if (isSavingReport) {
+        return;
+    }
+
     const date =
         document.getElementById("date").value;
 
@@ -179,6 +183,39 @@ async function showReport() {
     }
 
 
+    // DBの exercise_time / mood は整数型なので、送信前に整数と範囲を確認する
+    const timeNumber = Number(time);
+
+    if (
+        !Number.isInteger(timeNumber) ||
+        timeNumber < 1 ||
+        timeNumber > 600
+    ) {
+
+        alert(
+            "運動時間は1〜600の整数（分）で入力してください"
+        );
+
+        return;
+    }
+
+
+    const moodNumber = Number(mood);
+
+    if (
+        !Number.isInteger(moodNumber) ||
+        moodNumber < 1 ||
+        moodNumber > 5
+    ) {
+
+        alert(
+            "今日の気分は1〜5の整数で入力してください"
+        );
+
+        return;
+    }
+
+
     const reportData = {
 
         date: date,
@@ -192,16 +229,54 @@ async function showReport() {
         comment: comment
 
     };
-  isSavingReport = true;
-try {
-  await saveReportToSupabase(reportData);
-} catch (error) {
-  console.error("運動報告の保存に失敗しました:", error);
-  alert("保存に失敗しました。通信状況を確認して、もう一度お試しください。");
-  return;
-}  finally {
-    isSavingReport = false;
-  }
+
+
+    isSavingReport = true;
+
+    reportButton.disabled = true;
+
+    reportButton.textContent =
+        "保存中…";
+
+
+    try {
+
+        await saveReportToSupabase(reportData);
+
+    } catch (error) {
+
+        console.error(
+            "運動報告の保存に失敗しました:",
+            error
+        );
+
+        // fetch自体が失敗したとき（オフライン等）は TypeError になる
+        if (error instanceof TypeError) {
+
+            alert(
+                "通信に失敗しました。通信状況を確認して、もう一度お試しください。"
+            );
+
+        } else {
+
+            alert(
+                "保存できませんでした。入力内容を確認して、もう一度お試しください。"
+            );
+        }
+
+        reportButton.disabled = false;
+
+        reportButton.textContent =
+            "運動を報告する";
+
+        return;
+
+    } finally {
+
+        isSavingReport = false;
+    }
+
+
     reports.unshift(reportData);
 
 
