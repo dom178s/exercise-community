@@ -419,6 +419,45 @@ function showPointHistory() {
 
 
 // =========================
+// 履歴の1件分を表示
+// （太字の見出し＋改行区切りの行）
+// =========================
+
+function appendLines(
+    listItem,
+    title,
+    lines
+) {
+
+    const titleElement =
+        document.createElement(
+            "strong"
+        );
+
+    titleElement.textContent =
+        title;
+
+    listItem.appendChild(
+        titleElement
+    );
+
+
+    lines.forEach(
+        function (line) {
+
+            listItem.appendChild(
+                document.createElement("br")
+            );
+
+            listItem.appendChild(
+                document.createTextNode(line)
+            );
+        }
+    );
+}
+
+
+// =========================
 // 運動履歴表示
 // =========================
 
@@ -451,26 +490,17 @@ function showReportHistory() {
                 );
 
 
-            listItem.innerHTML =
-
-                "<strong>" +
-                report.date +
-                "</strong><br>" +
-
-                "🏃 " +
-                report.exercise +
-                "<br>" +
-
-                "⏱ " +
-                report.time +
-                "分<br>" +
-
-                "😊 気分：" +
-                report.mood +
-                "/5<br>" +
-
-                "💬 " +
-                report.comment;
+            // 入力内容はHTMLとして解釈させず、文字としてそのまま表示する
+            appendLines(
+                listItem,
+                report.date,
+                [
+                    "🏃 " + report.exercise,
+                    "⏱ " + report.time + "分",
+                    "😊 気分：" + report.mood + "/5",
+                    "💬 " + report.comment
+                ]
+            );
 
 
             historyElement.appendChild(
@@ -642,18 +672,17 @@ function showCheerHistory() {
                 );
 
 
-            listItem.innerHTML =
-
-                "<strong>" +
-                cheer.date +
-                "</strong><br>" +
-
-                "👏 良かったところ：<br>" +
-                cheer.goodPoint +
-                "<br>" +
-
-                "💬 これからのひとこと：<br>" +
-                cheer.cheerMessage;
+            // 入力内容はHTMLとして解釈させず、文字としてそのまま表示する
+            appendLines(
+                listItem,
+                cheer.date,
+                [
+                    "👏 良かったところ：",
+                    cheer.goodPoint,
+                    "💬 これからのひとこと：",
+                    cheer.cheerMessage
+                ]
+            );
 
 
             historyElement.appendChild(
