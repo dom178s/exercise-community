@@ -1,0 +1,62 @@
+name: Feature request
+description: 新機能・改善案を提案する
+title: "[Feature] "
+labels:
+  - feature
+body:
+  - type: textarea
+    id: background
+    attributes:
+      label: 背景・目的
+      description: 誰のどんな課題を解決したいかを書いてください。
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: 現在の状態
+      description: 現在どこまでできているかを書いてください。
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期待する状態
+      description: 実現したい状態を書いてください。
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: 対応範囲 / 対応しない範囲
+      description: 今回扱うこと・扱わないことを書いてください。
+  - type: textarea
+    id: done
+    attributes:
+      label: 完了条件
+      description: 何を満たせば完成かを書いてください。
+    validations:
+      required: true
+  - type: textarea
+    id: test
+    attributes:
+      label: テスト・検証方法
+      description: どのように価値や動作を確認するかを書いてください。
+  - type: textarea
+    id: related
+    attributes:
+      label: 関連ファイル・Issue
+      description: 関係するファイルやIssueがあれば書いてください。
+  - type: textarea
+    id: unknowns
+    attributes:
+      label: 要確認事項
+      description: 未確定の仕様や相談事項を書いてください。
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 優先度
+      options:
+        - high
+        - medium
+        - low
+    validations:
+      required: true

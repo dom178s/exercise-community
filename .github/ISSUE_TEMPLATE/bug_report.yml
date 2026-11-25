@@ -1,0 +1,64 @@
+name: Bug report
+description: 不具合を報告する
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: background
+    attributes:
+      label: 背景
+      description: なぜこの問題を扱う必要があるかを書いてください。
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: 現在の状態
+      description: 実際に起きていることを書いてください。
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期待する状態
+      description: 本来どうなるべきかを書いてください。
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: 対応範囲 / 対応しない範囲
+      description: 今回扱うこと・扱わないことを書いてください。
+  - type: textarea
+    id: done
+    attributes:
+      label: 完了条件
+      description: 何を確認できれば完了かを書いてください。
+    validations:
+      required: true
+  - type: textarea
+    id: test
+    attributes:
+      label: テスト方法
+      description: 再現方法や修正後の確認方法を書いてください。
+  - type: textarea
+    id: related
+    attributes:
+      label: 関連ファイル・Issue
+      description: 関係するファイルやIssueがあれば書いてください。
+  - type: textarea
+    id: unknowns
+    attributes:
+      label: 要確認事項
+      description: まだ分からないことを書いてください。
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 優先度
+      options:
+        - high
+        - medium
+        - low
+    validations:
+      required: true
